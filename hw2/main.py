@@ -2,6 +2,7 @@ import unittest
 import sys
 from lexer import Lexer, TokenKind
 from parser import Parser
+from codegen import CodeGen
 
 
 class Test(unittest.TestCase):
@@ -140,6 +141,71 @@ class Test(unittest.TestCase):
             'connective', 'AND', 'proposition', 'compound', 'NOT', 'proposition', 'atomic',
             'ID', 'more-proposition', 'epsilon'])
 
+    ############# Code Generation Tests ############
+
+    def test_codeGen_0(self):
+        tokelist = Lexer('P/\!Q,!P<=>!Q').tokenize()
+        parse_tree = Parser().parse(tokelist)
+        print tokelist
+        print parse_tree
+        generated = CodeGen(tokelist, parse_tree).generate()
+
+
+    def test_codeGen_1(self):
+        tokelist = Lexer('Q').tokenize()
+        parse_tree = Parser().parse(tokelist)
+        #generated = CodeGen(tokelist, parse_tree).generate()
+
+    def test_codeGen_2(self):
+        tokelist = Lexer('!Q').tokenize()
+        parse_tree = Parser().parse(tokelist)
+        #generated = CodeGen(tokelist, parse_tree).generate()
+
+    def test_codeGen_3(self):
+        tokelist = Lexer('P <=> Q').tokenize()
+        parse_tree = Parser().parse(tokelist)
+        #generated = CodeGen(tokelist, parse_tree).generate()
+
+    def test_codeGen_4(self):
+        tokelist = Lexer('( P /\ Q )').tokenize()
+        parse_tree = Parser().parse(tokelist)
+        #generated = CodeGen(tokelist, parse_tree).generate()
+
+    def test_codeGen_5(self):
+        tokelist = Lexer('( P \/ Q ) , ( X => Y )').tokenize()
+        parse_tree = Parser().parse(tokelist)
+        #generated = CodeGen(tokelist, parse_tree).generate()
+
+    def test_codeGen_6(self):
+        tokelist = Lexer(')Q').tokenize()
+        parse_tree = Parser().parse(tokelist)
+        #generated = CodeGen(tokelist, parse_tree).generate()
+
+    def test_codeGen_7(self):
+        tokelist = Lexer('!Q)P!').tokenize()
+        parse_tree = Parser().parse(tokelist)
+        #generated = CodeGen(tokelist, parse_tree).generate()
+
+    def test_codeGen_8(self):
+        tokelist = Lexer('A/\((B/\(C\/D))),A\/C').tokenize()
+        parse_tree = Parser().parse(tokelist)
+        #generated = CodeGen(tokelist, parse_tree).generate()
+
+    def test_codeGen_9(self):
+        tokelist = Lexer('Q\./P').tokenize()
+        parse_tree = Parser().parse(tokelist)
+        #generated = CodeGen(tokelist, parse_tree).generate()
+
+    def test_codeGen_10(self):
+        tokelist = Lexer('(A/\B)\/C').tokenize()
+        parse_tree = Parser().parse(tokelist)
+        #generated = CodeGen(tokelist, parse_tree).generate()
+
+    def test_codeGen_11(self):
+        tokelist = Lexer('B\/(C),A/\!B').tokenize()
+        parse_tree = Parser().parse(tokelist)
+        #generated = CodeGen(tokelist, parse_tree).generate()
+
 #print sys.argv
 
 #if run as just main.py do unit tests
@@ -150,12 +216,20 @@ else:
     with open(sys.argv[1], 'r') as file:
         for index, line in enumerate(file):
             print line
+
+            #Lexer
             l = Lexer(line)
             l.line = index + 1
             tokelist = l.tokenize()
             print tokelist.kind
             l.line += 1
+
+            #Parser
             parse_tree = Parser().parse(tokelist)
             print parse_tree
+
+            #Code Generator
+            g = CodeGen(tokelist, parse_tree)
+            satisiable = g.generate()
             print "\n----------\n"
 

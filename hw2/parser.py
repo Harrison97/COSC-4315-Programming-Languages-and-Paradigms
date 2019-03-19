@@ -35,6 +35,7 @@ class Parser:
             #pass
             #raise SyntaxError(str('Syntax Error at line ' + str(self.loc[self.current].line)
             #        + ' column ' + str(self.loc[self.current].col) + '.'))
+            print self.parseTree
             return str('Syntax Error at line ' + str(self.loc[self.current].line)
                     + ' column ' + str(self.loc[self.current].col) + '.')
         return self.parseTree
