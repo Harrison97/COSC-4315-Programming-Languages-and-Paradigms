@@ -64,6 +64,17 @@ class Test(unittest.TestCase):
             TokenKind.ID, TokenKind.RPAR, TokenKind.COMMA, TokenKind.ID,
             TokenKind.AND, TokenKind.NOT, TokenKind.ID])
 
+    def test_lexer_12(self):
+        l = Lexer('P/\!Q,!P<=>!Q').tokenize()
+        self.assertEqual(l.kind, [TokenKind.ID, TokenKind.AND, TokenKind.NOT,
+            TokenKind.ID, TokenKind.COMMA, TokenKind.NOT, TokenKind.ID,
+            TokenKind.IFF, TokenKind.NOT, TokenKind.ID])
+
+    def test_lexer_13(self):
+        l = Lexer('P /\ Q => P').tokenize()
+        self.assertEqual(l.kind, [TokenKind.ID, TokenKind.AND, TokenKind.ID,
+            TokenKind.IMPLIES, TokenKind.ID])
+
     ########### parser tests ###########
 
     def test_parser_1(self):
@@ -141,70 +152,102 @@ class Test(unittest.TestCase):
             'connective', 'AND', 'proposition', 'compound', 'NOT', 'proposition', 'atomic',
             'ID', 'more-proposition', 'epsilon'])
 
+    def test_parser_12(self):
+        tokelist = Lexer('P/\!Q,!P<=>!Q').tokenize()
+        parse_tree = Parser().parse(tokelist)
+        self.assertEqual(parse_tree, ['propositions', 'proposition', 'compound', 'atomic',
+            'ID', 'connective', 'AND', 'proposition', 'compound', 'NOT', 'proposition', 'atomic',
+            'ID', 'more-proposition', 'comma', 'propositions', 'proposition', 'compound', 'NOT',
+            'proposition', 'compound', 'atomic', 'ID', 'connective', 'IFF', 'proposition', 'compound',
+            'NOT', 'proposition', 'atomic', 'ID', 'more-proposition', 'epsilon'])
+
+    def test_parser_13(self):
+        tokelist = Lexer('P /\ Q => P').tokenize()
+        parse_tree = Parser().parse(tokelist)
+        self.assertEqual(parse_tree, ['propositions', 'proposition', 'compound', 'atomic',
+            'ID', 'connective', 'AND', 'proposition', 'compound', 'atomic', 'ID', 'connective',
+            'IMPLIES', 'proposition', 'atomic', 'ID', 'more-proposition', 'epsilon'])
+
     ############# Code Generation Tests ############
 
-    def test_codeGen_0(self):
-        tokelist = Lexer('P/\!Q,!P<=>!Q').tokenize()
+
+
+#    def test_codeGen_1(self):
+#        tokelist = Lexer('Q').tokenize()
+#        parse_tree = Parser().parse(tokelist)
+#        #generated = CodeGen(tokelist, parse_tree).generate()
+#
+#    def test_codeGen_2(self):
+#        tokelist = Lexer('!Q').tokenize()
+#        parse_tree = Parser().parse(tokelist)
+#        #generated = CodeGen(tokelist, parse_tree).generate()
+#
+#    def test_codeGen_3(self):
+#        tokelist = Lexer('P <=> Q').tokenize()
+#        parse_tree = Parser().parse(tokelist)
+#        #generated = CodeGen(tokelist, parse_tree).generate()
+#
+#    def test_codeGen_4(self):
+#        tokelist = Lexer('( P /\ Q )').tokenize()
+#        parse_tree = Parser().parse(tokelist)
+#        #generated = CodeGen(tokelist, parse_tree).generate()
+#
+#    def test_codeGen_5(self):
+#        tokelist = Lexer('( P \/ Q ) , ( X => Y )').tokenize()
+#        parse_tree = Parser().parse(tokelist)
+#        #generated = CodeGen(tokelist, parse_tree).generate()
+#
+#    def test_codeGen_6(self):
+#        tokelist = Lexer(')Q').tokenize()
+#        parse_tree = Parser().parse(tokelist)
+#        #generated = CodeGen(tokelist, parse_tree).generate()
+#
+#    def test_codeGen_7(self):
+#        tokelist = Lexer('!Q)P!').tokenize()
+#        parse_tree = Parser().parse(tokelist)
+#        #generated = CodeGen(tokelist, parse_tree).generate()
+#
+#    def test_codeGen_8(self):
+#        tokelist = Lexer('A/\((B/\(C\/D))),A\/C').tokenize()
+#        parse_tree = Parser().parse(tokelist)
+#        #generated = CodeGen(tokelist, parse_tree).generate()
+#
+#    def test_codeGen_9(self):
+#        tokelist = Lexer('Q\./P').tokenize()
+#        parse_tree = Parser().parse(tokelist)
+#        #generated = CodeGen(tokelist, parse_tree).generate()
+#
+#    def test_codeGen_10(self):
+#        tokelist = Lexer('(A/\B)\/C').tokenize()
+#        parse_tree = Parser().parse(tokelist)
+#        #generated = CodeGen(tokelist, parse_tree).generate()
+#
+#    def test_codeGen_11(self):
+#        tokelist = Lexer('B\/(C),A/\!B').tokenize()
+#        parse_tree = Parser().parse(tokelist)
+#        generated = CodeGen(tokelist, parse_tree).generate()
+
+    def test_codeGen_11(self):
+        tokelist = Lexer('B\/(C)').tokenize()
         parse_tree = Parser().parse(tokelist)
         print tokelist
         print parse_tree
         generated = CodeGen(tokelist, parse_tree).generate()
+#
+#    def test_codeGen_12(self):
+#        tokelist = Lexer('P/\!Q,!P<=>!Q').tokenize()
+#        parse_tree = Parser().parse(tokelist)
+#        print tokelist
+#        print parse_tree
+#        generated = CodeGen(tokelist, parse_tree).generate()
 
 
-    def test_codeGen_1(self):
-        tokelist = Lexer('Q').tokenize()
-        parse_tree = Parser().parse(tokelist)
-        #generated = CodeGen(tokelist, parse_tree).generate()
-
-    def test_codeGen_2(self):
-        tokelist = Lexer('!Q').tokenize()
-        parse_tree = Parser().parse(tokelist)
-        #generated = CodeGen(tokelist, parse_tree).generate()
-
-    def test_codeGen_3(self):
-        tokelist = Lexer('P <=> Q').tokenize()
-        parse_tree = Parser().parse(tokelist)
-        #generated = CodeGen(tokelist, parse_tree).generate()
-
-    def test_codeGen_4(self):
-        tokelist = Lexer('( P /\ Q )').tokenize()
-        parse_tree = Parser().parse(tokelist)
-        #generated = CodeGen(tokelist, parse_tree).generate()
-
-    def test_codeGen_5(self):
-        tokelist = Lexer('( P \/ Q ) , ( X => Y )').tokenize()
-        parse_tree = Parser().parse(tokelist)
-        #generated = CodeGen(tokelist, parse_tree).generate()
-
-    def test_codeGen_6(self):
-        tokelist = Lexer(')Q').tokenize()
-        parse_tree = Parser().parse(tokelist)
-        #generated = CodeGen(tokelist, parse_tree).generate()
-
-    def test_codeGen_7(self):
-        tokelist = Lexer('!Q)P!').tokenize()
-        parse_tree = Parser().parse(tokelist)
-        #generated = CodeGen(tokelist, parse_tree).generate()
-
-    def test_codeGen_8(self):
-        tokelist = Lexer('A/\((B/\(C\/D))),A\/C').tokenize()
-        parse_tree = Parser().parse(tokelist)
-        #generated = CodeGen(tokelist, parse_tree).generate()
-
-    def test_codeGen_9(self):
-        tokelist = Lexer('Q\./P').tokenize()
-        parse_tree = Parser().parse(tokelist)
-        #generated = CodeGen(tokelist, parse_tree).generate()
-
-    def test_codeGen_10(self):
-        tokelist = Lexer('(A/\B)\/C').tokenize()
-        parse_tree = Parser().parse(tokelist)
-        #generated = CodeGen(tokelist, parse_tree).generate()
-
-    def test_codeGen_11(self):
-        tokelist = Lexer('B\/(C),A/\!B').tokenize()
-        parse_tree = Parser().parse(tokelist)
-        #generated = CodeGen(tokelist, parse_tree).generate()
+#    def test_codeGen_13(self):
+#        tokelist = Lexer('P /\ Q => P').tokenize()
+#        parse_tree = Parser().parse(tokelist)
+#        print tokelist
+#        print parse_tree
+#        generated = CodeGen(tokelist, parse_tree).generate()
 
 #print sys.argv
 

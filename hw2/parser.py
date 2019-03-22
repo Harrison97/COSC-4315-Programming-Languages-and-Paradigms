@@ -35,7 +35,7 @@ class Parser:
             #pass
             #raise SyntaxError(str('Syntax Error at line ' + str(self.loc[self.current].line)
             #        + ' column ' + str(self.loc[self.current].col) + '.'))
-            print self.parseTree
+            #print self.parseTree
             return str('Syntax Error at line ' + str(self.loc[self.current].line)
                     + ' column ' + str(self.loc[self.current].col) + '.')
         return self.parseTree
@@ -74,7 +74,6 @@ class Parser:
 
     def proposition(self): # -> atomic | compound
         self.parseTree.append("proposition")
-
         if self.atomic():
             return True
         elif self.compound():
@@ -83,7 +82,7 @@ class Parser:
 
     def atomic(self): # -> 0 | 1 | ID (All go to ID)
         #print self.current
-        #print self.next
+        #print self.tokens[self.current]
         if self.isToken(TokenKind.ID):
             return True
         return False
@@ -119,11 +118,14 @@ class Parser:
     def isToken(self, token):
         if self.tokens[self.current] == token:
             if token == TokenKind.ID:
+                # this handles some edge cases
                 if self.next == None:
                     pass
                 elif sys._getframe(2).f_code.co_name == 'compound':
                     pass
                 elif self.tokens[self.next] == TokenKind.RPAR:
+                    pass
+                elif self.tokens[self.next] == TokenKind.COMMA:
                     pass
                 else:
                     return False

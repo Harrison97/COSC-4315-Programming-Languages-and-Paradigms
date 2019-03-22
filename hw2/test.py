@@ -1,6 +1,8 @@
-from pysmt.shortcuts import Symbol, is_sat, AND, NOT, NOT, IFF, NOT
+from pysmt.shortcuts import Symbol, is_sat, Or
 
-P = Symbol('P')
-Q = Symbol('Q')
-P = Symbol('P')
-Q = Symbol('Q')
+B = Symbol('B')
+C = Symbol('C')
+
+prop1 = Or(B, Xor(, C))
+
+print prop1
