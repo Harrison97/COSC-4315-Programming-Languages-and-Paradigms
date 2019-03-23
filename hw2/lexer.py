@@ -41,7 +41,8 @@ class Lexer:
         kind = []
         value = []
 
-        #for loop does basic lexical analysis on the input and adds to the lists, along with the actual value
+        #for loop does basic lexical analysis on the input and adds to
+        #the lists, along with the actual value
         #returns a  Token(loc[], kind[])
         for index, c in enumerate(self.text):
             if c.isalpha():

@@ -134,7 +134,9 @@ class CodeGen:
 
     def runCode(self):
         if self.generated:
-            return subprocess.check_output(['python2', 'output.py'])[:-1]
+            return (
+                subprocess.check_output(['python2', 'output.py'])[:-1]
+            )
         return self.parseTree
 
     def isNot(self, p):

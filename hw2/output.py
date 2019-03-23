@@ -1,11 +1,8 @@
-from pysmt.shortcuts import Symbol, is_sat, Or, And, Implies
+from pysmt.shortcuts import Symbol, is_sat, Xor
 
-P = Symbol('P')
 Q = Symbol('Q')
-X = Symbol('X')
-Y = Symbol('Y')
+P = Symbol('P')
 
-prop1 = Or(P, Q)
-prop2 = Implies(X, Y)
+prop1 = Xor(Q, P)
 
-print is_sat(And(prop1, prop2))
+print is_sat(prop1)

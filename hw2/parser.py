@@ -33,11 +33,15 @@ class Parser:
         #Syntax Error with the location of the error
         except Exception:
             #pass
-            #raise SyntaxError(str('Syntax Error at line ' + str(self.loc[self.current].line)
-            #        + ' column ' + str(self.loc[self.current].col) + '.'))
+            #raise SyntaxError(str('Syntax Error at line '
+            #        + str(self.loc[self.current].line)
+            #        + ' column '
+            #        + str(self.loc[self.current].col) + '.'))
             #print self.parseTree
-            return str('Syntax Error at line ' + str(self.loc[self.current].line)
-                    + ' column ' + str(self.loc[self.current].col) + '.')
+            return str('Syntax Error at line '
+                    + str(self.loc[self.current].line)
+                    + ' column ' + str(self.loc[self.current].col)
+                    + '.')
         return self.parseTree
 
     # match function consumes the token if is is the tried token
@@ -87,11 +91,15 @@ class Parser:
             return True
         return False
 
-    def compound(self): # -> atomic connective proposition | LPAR proposition RPAR | NOT proposition
+    def compound(self):
+        # -> atomic connective proposition | LPAR proposition RPAR
+        # | NOT proposition
         self.parseTree.append("compound")
         if self.atomic() and self.connective() and self.proposition():
             return True
-        elif self.isToken(TokenKind.LPAR) and self.proposition() and self.isToken(TokenKind.RPAR):
+        elif (self.isToken(TokenKind.LPAR)
+                and self.proposition()
+                and self.isToken(TokenKind.RPAR)):
             return True
         elif self.isToken(TokenKind.NOT) and self.proposition():
             return True
