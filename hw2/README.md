@@ -1,5 +1,4 @@
-Harrison Hayes
-
+Harrison Hayes\n
 3/24/2019
 
 Amin Alipour
