@@ -1,14 +1,11 @@
-#-- Code Generation for Propositional Logic --
+# -- Code Generation for Propositional Logic --
 
 
 
-Harrison Hayes
-
-3/24/2019
-
-Amin Alipour
-
-COSC 4315
+>Harrison Hayes
+>3/24/2019
+>Amin Alipour
+>COSC 4315
 
 Programming Languages and Paradigms
 
@@ -18,13 +15,13 @@ Programming Languages and Paradigms
 
 
 
-##For unit tests:
+## For unit tests:
 
     $python main.py
 
 
 
 
-##For running a file:
+## For running a file:
 
     $python main.py <input file>
