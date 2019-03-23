@@ -1,6 +1,6 @@
 # -- Code Generation for Propositional Logic --
 
-Programming Languages and Paradigms
+## Programming Languages and Paradigms
 
 >Harrison Hayes
 
@@ -12,10 +12,10 @@ Programming Languages and Paradigms
 
 **Version: Python 2.7**
 
-## For unit tests:
+### For unit tests:
 
     $python main.py
 
-## For running a file:
+### For running a file:
 
     $python main.py <input file>
