@@ -1,4 +1,5 @@
-Harrison Hayes/n
+Harrison Hayes
+
 3/24/2019
 
 Amin Alipour
@@ -13,7 +14,9 @@ Version: Python 2.7
 -- Code Generation for Propositional Logic --
 
 
-    For unit tests: $python main.py
+For unit tests:
+    $python main.py
 
 
-For running a file: $python main.py <input file>
+For running a file:
+    $python main.py <input file>
