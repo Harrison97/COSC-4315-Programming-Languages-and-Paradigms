@@ -2,14 +2,14 @@
 
 
 
->Harrison Hayes
->3/24/2019
->Amin Alipour
->COSC 4315
+
 
 Programming Languages and Paradigms
 
-
+>Harrison Hayes | 
+>3/24/2019 | 
+>Amin Alipour | 
+>COSC 4315 | 
 
 **Version: Python 2.7**
 
