@@ -15,8 +15,10 @@ Version: Python 2.7
 
 
 For unit tests:
+
     $python main.py
 
 
 For running a file:
+
     $python main.py <input file>
