@@ -19,3 +19,8 @@
 ### For running a file:
 
     $python main.py <input file>
+
+### To view more information about the Lexer, Parser,
+### and Code Generator for the given input
+
+    $python main.py <input file> --more
