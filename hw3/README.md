@@ -12,12 +12,12 @@
 
 **Haskell ghci Version 8.6.4**
 
-### To Open ghci and load the File:
+## To Open ghci and load the File:
 
     $ghci main.hs
     $ghci :load main.hs
 
-### To Run Built in Tests:
+## To Run Built in Tests:
 
     >eval a // -(-(10))     = 10
     >eval b // -(10)        = -10
@@ -44,7 +44,7 @@ unisemantic Inc  = (+1)
 
     >eval (<UniExp | BinExp> <operator> <expression | (Val <value>)>)
 
-# Example:
+### Example:
 
     >eval (UniExp Neg (Val 10))
     >-10
