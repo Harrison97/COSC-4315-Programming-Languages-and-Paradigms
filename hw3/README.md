@@ -12,7 +12,7 @@
 
 **Haskell ghci Version 8.6.4**
 
-## To Open ghci and load the File:
+## To Open ghci and Load the File:
 
     $ghci main.hs
     $ghci :load main.hs
