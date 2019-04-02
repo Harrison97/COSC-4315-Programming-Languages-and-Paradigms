@@ -1,4 +1,4 @@
-# -- Functions for Evaluating Expressions in Haskell --
+# -- Evaluating Expressions in Haskell --
 
 ## Programming Languages and Paradigms
 
@@ -24,9 +24,9 @@
     >eval c // (2+3)+(2-1)  = 4
     >eval d // (10^2)*(2^3) = 800
 
-### To Write and Evaluate Your Own Expression 
+## To Write and Evaluate Your Own Expression 
 
--- defining semantics of binary operators
+### Defined Semantics of Binary Operators
 
 binsemantic Add  = (+)
 
@@ -36,7 +36,7 @@ binsemantic Mult  = (*)
 
 binsemantic Pow  = (^)
 
--- defining semantics of unary operators
+### Defined Semantics of Unary Operators
 
 unisemantic Neg  = (*(-1))
 
