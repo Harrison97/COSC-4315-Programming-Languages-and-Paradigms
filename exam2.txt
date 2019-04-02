@@ -1,0 +1,35 @@
+Haskell - read first 30 pages of tutorial
+    Main features:
+        functional
+        lazy - > allows infinite data structures
+    List comprehension
+    statically typed -> dont write types in most of code, but infers them in compile time
+    pattern matching..?
+    quicksort? list comparison?
+        -> takes list, returns list
+    zip operator..? (not in exam)
+    tail
+    fibinacci number fib = 1:1[(a+b)] - not on exam
+
+Chapter 3
+    referential transparency - The property whereby a function's
+        -- values depends only on the values of it's variabls.
+        -- EX: GCD functions, Rand function
+
+    What is dynamic typing? Different from dynamic scoping.
+    Be prepared to write a recursive functioin for a list -> findig something in a list.
+    List is primary data typ in functional programming language
+    List -> One type
+    Tuple -> Multiple Types
+    Tail Recursive function
+    Lazy Evaluation and Eager Evaluation -> Pros, Cons
+    Acheiving lazy eval in C? Thunking.
+    Strict Language?
+        Dont allow lazy eval..?
+    Memoization - Caching Data
+
+4 - pattern matcing
+
+4.4 not on exam..?
+4.5 not on exam..?
+5 not on exam
