@@ -27,18 +27,24 @@
 ### To Write and Evaluate Your Own Expression 
 
 -- defining semantics of binary operators
+
 binsemantic Add  = (+)
+
 binsemantic Sub  = (-)
+
 binsemantic Mult  = (*)
+
 binsemantic Pow  = (^)
 
 -- defining semantics of unary operators
+
 unisemantic Neg  = (*(-1))
+
 unisemantic Inc  = (+1)
 
     >eval (<UniExp | BinExp> <operator> <expression | (Val <value>)>)
 
-#Example:
+# Example:
 
     >eval (UniExp Neg (Val 10))
     >-10
